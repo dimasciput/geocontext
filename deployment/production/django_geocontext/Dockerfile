@@ -16,6 +16,8 @@ RUN apt-get install -y python3-pip \
 
 ADD REQUIREMENTS.txt /REQUIREMENTS.txt
 RUN pip install -r /REQUIREMENTS.txt
+ADD entry-point.sh /entry-point.sh
+RUN chmod +x /entry-point.sh
 RUN pip install uwsgi
 
 ADD uwsgi.conf /uwsgi.conf
