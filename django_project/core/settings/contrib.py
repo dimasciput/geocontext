@@ -2,7 +2,14 @@
 """
 core.settings.contrib
 """
+import os
 from .base import *  # noqa
+
+try:
+    CORS_WHITELIST = os.environ['CORS_WHITELIST']
+except KeyError:
+    CORS_WHITELIST = None
+
 
 STOP_WORDS = (
     'a', 'an', 'and', 'if', 'is', 'the', 'in', 'i', 'you', 'other',
@@ -68,3 +75,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_SIGNUP_FORM_CLASS = 'base.forms.SignupForm'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 LOGIN_REDIRECT_URL = "/"
+
+if CORS_WHITELIST:
+    CORS_ORIGIN_WHITELIST = CORS_WHITELIST.split(',')
